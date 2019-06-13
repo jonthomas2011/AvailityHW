@@ -21,8 +21,10 @@ public class Main {
                 content += eachArg + " ";
             }
         }
-            output = parenChecker(content);
-            System.out.println(String.valueOf(output));
+        //since comments are not needed to check for syntax, we remove them from the content string
+        String commentsRemoved = content.replaceAll(";.*", "");
+        output = parenChecker(commentsRemoved);
+        System.out.println(String.valueOf(output));
     }
 
     //  reads all the content from the input file provided
@@ -56,7 +58,13 @@ public class Main {
                next char is a line feed, carriage return, or tab, it "ignores" it and continues searching
                through the content
              */
-            if(count == 0 && c != '(' && c  != ' ' && c != '\r' && c != '\n' && c!= '\t'){
+            if(count == 0
+                    && c != '('
+                    && c != ' '
+                    && c != '\r'
+                    && c != '\n'
+                    && c != '\t'
+            ){
                 return false;
             }
             else if(c == '(') {
