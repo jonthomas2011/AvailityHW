@@ -1,0 +1,10 @@
+ ;;;;;;
+ ;; See way below for what we are trying to do 
+ ;;;;;;
+
+ ;;;;;;
+ ;; Globals
+ ;;;;;;
+
+ (defvar *debug* nil) ;;;
+ 
