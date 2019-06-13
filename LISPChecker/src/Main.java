@@ -1,8 +1,6 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Stack;
-
 
 public class Main {
     public static void main(String[] args) {
@@ -38,26 +36,38 @@ public class Main {
         catch (IOException e)
         {
             e.printStackTrace();
+            System.exit(1);
         }
         return content;
     }
 
     // checks to see if correct number of parenthesis exist
-    private static boolean parenChecker(String fileContent){
+    private static boolean parenChecker(String content){
 
-        //Stack <Character> stack = new Stack<Character>();
-        int countLP = 0, countRP = 0;
+        // will keep a counter to record every time we see a left and right parenthesis.
+        int count = 0;
 
-        for (char i : fileContent.toCharArray()) {
-            if(i == '(') {
-                countLP++;
+        char c;
+        for (int i = 0; i < content.length(); i++) {
+            c = content.charAt(i);
+
+            /* if the count is 0, we assume we've ended the final parenthesis for that section. If the next character
+               is not a '(' its an invalid start to a new code block, so we return false. Also, if count is 0 and the
+               next char is a line feed, carriage return, or tab, it "ignores" it and continues searching
+               through the content
+             */
+            if(count == 0 && c != '(' && c  != ' ' && c != '\r' && c != '\n' && c!= '\t'){
+                return false;
             }
-            else if (i == ')') {
-                countRP++;
+            else if(c == '(') {
+                count++;
+            }
+            else if (c == ')') {
+                count--;
             }
         }
 
-        if (countLP == countRP)
+        if (count == 0)
             return true;
         else
             return false;
