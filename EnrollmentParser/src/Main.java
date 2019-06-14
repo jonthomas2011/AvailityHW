@@ -1,23 +1,24 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
 
-    public static void main (String args[]){
+    public static void main (String args[]) throws IOException {
         File file = new File (args[0]);
         String fileOutputPath = args[1];
-        ArrayList<String> userID = new ArrayList<String>();
-        ArrayList<String> name = new ArrayList<String>();
-        ArrayList<String> version = new ArrayList<String>();
-        ArrayList<String> insurance = new ArrayList<String>();
+
+        var userID = new ArrayList<String>();
+        var name = new ArrayList<String>();
+        var version = new ArrayList<String>();
+        var insurance = new ArrayList<String>();
 
         parseFile(file,userID,name,version,insurance);
         createFiles(insurance, fileOutputPath);
-        ArrayList reorderedNames = reorderNames(name);
-        sortContent(userID,reorderedNames,version, insurance);
+        ArrayList<String> reorderedNames = reorderNames(name);
+        var content = sortContent(userID,reorderedNames,version, insurance);
+        removeDuplicates(content);
+        writeToFiles(content, fileOutputPath);
     }
 
     // reads the entire file and separates the columns into different ArrayLists
@@ -40,6 +41,10 @@ public class Main {
             index++;
         }
     }
+
+    /* initial step to create the file. creating it here allows us to go straight into append mode when actually writing
+    to the file, not having to worry about the issues with opening new FileWriters which overwrite existing files.
+    */
     public static void createFiles(ArrayList insurance, String fileOutputPath) {
         List<String> distinctCompanies = (List<String>) insurance.stream().distinct().collect(Collectors.toList());
 
@@ -54,6 +59,7 @@ public class Main {
             }
         }
     }
+    //will split first name last name and reorder  them to be last name first name
     public static ArrayList<String> reorderNames(ArrayList<String> name ){
 
         ArrayList reordered = new ArrayList();
@@ -64,7 +70,9 @@ public class Main {
         }
         return reordered;
     }
-    public static void sortContent(ArrayList userID, ArrayList name, ArrayList version, ArrayList insurance) {
+
+    //grabs the values from the multiple arrays with finalized values and joins them back together
+    public static String[] sortContent(ArrayList userID, ArrayList name, ArrayList version, ArrayList insurance) {
 
         String[] content = new String[name.size()];
 
@@ -72,14 +80,53 @@ public class Main {
             content[i] = (String) name.get(i) + ',' + (String) userID.get(i) + ',' + (String) version.get(i) + ',' + (String) insurance.get(i);
         }
 
-        for(int i = 0; i< name.size(); i++) {
-            for (int j = i+1; j<content.length; j++) {
-                if(content[i].compareTo(content[j])>0) {
+        for(int i = 0; i < name.size(); i++) {
+            for (int j = i + 1; j < content.length; j++) {
+                if(content[i].compareTo(content[j]) > 0) {
                     String temp = content[i];
                     content[i] = content[j];
                     content[j] = temp;
                 }
             }
+        }
+        return content;
+    }
+    public static void removeDuplicates(String[] content){
+        for (String line : content) {
+
+            String segments[] = line.split(",");
+            String userID = segments[1];
+            String insurance = segments[3];
+        }
+        /* needed additional logic to get this working right. Plan was to compare userID and insurance and find duplicate
+        * values through some means of a hashmap/ list. if found, it would grab the version of both values and compare to see
+        * which was one higher and then use that.
+        * */
+    }
+    public static void writeToFiles(String[] content, String outputPath) throws IOException {
+
+        int ch;
+
+        for (String line : content) {
+
+            String segments[] = line.split(",");
+            String fileContent = segments[0] + ',' + segments[1] + ',' + segments[2];
+            String insurance = segments[3];
+
+            FileReader reader = new FileReader(outputPath + insurance + ".txt");
+            boolean isEmpty = false;
+            while ((ch = reader.read())!= -1) {
+                isEmpty = true;
+            }
+            reader.close();
+
+            FileWriter writer = new FileWriter(outputPath + insurance + ".txt", true);
+
+            if(isEmpty)
+                writer.write(fileContent + "\r\n");
+            else
+                writer.append(fileContent + "\r\n");
+            writer.close();
         }
     }
 }
