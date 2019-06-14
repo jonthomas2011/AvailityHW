@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09170ec8-ea9e-4567-b225-ebd2419d2cbb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../LISPChecker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../LISPChecker/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/Enrollment.csv" beforeDir="false" afterPath="$PROJECT_DIR$/input/Enrollment.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,11 +21,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+            <state relative-caret-position="49">
+              <caret line="36" column="38" lean-forward="true" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#223#231#0" expanded="true" />
+                <element signature="e#422#430#0" expanded="true" />
                 <element signature="e#286#294#0" expanded="true" />
                 <element signature="e#348#356#0" expanded="true" />
                 <element signature="e#411#419#0" expanded="true" />
@@ -86,6 +87,9 @@
       </pane>
     </panes>
   </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -109,7 +113,7 @@
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="EnrollmentParser" />
-      <option name="PROGRAM_PARAMETERS" value="C:\Users\jonth\AvailityAssessment\EnrollmentParser\input\Enrollment.csv" />
+      <option name="PROGRAM_PARAMETERS" value="C:\Users\jonth\AvailityAssessment\EnrollmentParser\input\Enrollment.csv C:\Users\jonth\AvailityAssessment\EnrollmentParser\out\insurance_files\" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -174,21 +178,26 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>8</line>
+          <line>43</line>
           <properties />
-          <option name="timeStamp" value="5" />
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="company" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+        <state relative-caret-position="49">
+          <caret line="36" column="38" lean-forward="true" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#223#231#0" expanded="true" />
+            <element signature="e#422#430#0" expanded="true" />
             <element signature="e#286#294#0" expanded="true" />
             <element signature="e#348#356#0" expanded="true" />
             <element signature="e#411#419#0" expanded="true" />
