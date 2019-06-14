@@ -30,7 +30,7 @@ $ java Main {filepath)\{inputFilename}.txt {filepathOut}\
 ```
 | Test Cases | 
 | ------ | 
-| AvailityAssessment\EnrollmentParser\tests\\ |  
+| AvailityAssessment\EnrollmentParser\input\\ |  
 
 ##### Reservations
 
